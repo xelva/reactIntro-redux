@@ -3,15 +3,12 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
 
-const User = ({ userId, users, fetchUser }) => {
+const User = ({ userId, user, fetchUser }) => {
     useEffect(() => {
         fetchUser(userId)
     }, [])
 
     const renderUser = () => {
-        const user = users.find((user) => {
-            return user.id === userId
-        })
         if (!user) {
             return null;
         }
@@ -26,9 +23,9 @@ const User = ({ userId, users, fetchUser }) => {
     return <div>{renderUser()}</div>
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        users: state.users
+        user: state.users.find(user => user.id === ownProps.userId)
     }
 }
 
