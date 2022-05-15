@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions';
 
 
 const User = ({ userId, user, fetchUser }) => {
-    useEffect(() => {
-        fetchUser(userId)
-    }, [])
 
     const renderUser = () => {
         if (!user) {
@@ -29,4 +25,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchUser})(User);
+export default connect(mapStateToProps)(User);
